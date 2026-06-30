@@ -1,0 +1,19 @@
+# Swap files (temporary files created during an active Vim session)
+*.swp
+*.swo
+*.swn
+*.sw?
+
+# Undo files (if undofile is enabled in your configuration)
+*.un~
+
+# Backup files
+*~
+*.bak
+
+# Vim documentation tags (automatically generated when you run :helptags)
+/doc/tags
+/doc/tags-*
+
+# Vimball archives (if you bundle or distribute via vimball)
+*.vba
