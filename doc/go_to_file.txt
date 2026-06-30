@@ -1,0 +1,119 @@
+*go_to_file.txt*  Enhanced file navigation for Vim
+
+==============================================================================
+Author:  Vasilii Pochkaenko <pochkaenkov@yandex.ru>
+License: MIT license
+URL:     https://github.com/1KoT1/go_to_file
+
+==============================================================================
+CONTENT                                    *go_to_file*
+
+  1. Introduction ....................... |go_to_file-introduction|
+  2. Commands ........................... |go_to_file-commands|
+  3. Options ............................ |go_to_file-options|
+  4. Mapping Recommendations ........... |go_to_file-mappings|
+  5. Internationalization .............. |go_to_file-i18n|
+  6. License ........................... |go_to_file-license|
+
+==============================================================================
+1. Introduction                                    *go_to_file-introduction*
+
+go_to_file is a lightweight Vim plugin that improves the native |gf| and |gF|
+commands. It provides a smart window management strategy and automatically
+interprets line numbers that follow the filename on the same line.
+
+Key features:
+
+  - Smart window reuse: when multiple windows are already open, the plugin
+    switches to the next window to open the file there, avoiding unnecessary
+    splits.
+  - Configurable split orientation: opens a vertical or horizontal split when
+    only one window exists.
+  - Automatic line number detection: if a number appears right after the
+    filename on the current line, the plugin jumps directly to that line.
+
+==============================================================================
+2. Commands                                          *go_to_file-commands*
+
+                                                *:GoToFile*
+:GoToFile
+    Open the file whose path is under the cursor. Behaves like |gf|, but
+    with improved window handling:
+
+    - If there is more than one window on the screen, switch to the next
+      window |CTRL-W_w| and open the file there (reusing the existing window
+      layout).
+    - If there is only one window, create a new split. The orientation
+      depends on |g:go_to_file_vertical|.
+
+    Additionally, a trailing line number is automatically detected from the
+    current line following the filename. For example, with the cursor on:
+
+        src/main.rs:42
+
+    the command opens "src/main.rs" and jumps to line 42.
+
+==============================================================================
+3. Options                                              *go_to_file-options*
+
+                                                *g:go_to_file_vertical*
+g:go_to_file_vertical
+    Type:       Boolean
+    Default:    1 (true)
+
+    Controls how the new window is created when only one window is open:
+
+      g:go_to_file_vertical = 1  -> vertical split (|:vertical-split|)
+      g:go_to_file_vertical = 0  -> horizontal split (|:split|)
+
+    Example in your |vimrc|:
+
+        let g:go_to_file_vertical = 0
+
+==============================================================================
+4. Mapping Recommendations                          *go_to_file-mappings*
+
+The plugin does NOT define any default key mappings to avoid conflicts with
+your personal configuration. It is strongly recommended that you add a
+convenient mapping yourself.
+
+Most users find it comfortable to map the command to a leader-based shortcut.
+For example, to use |<Leader>gf|:
+
+    nnoremap <Leader>gf :GoToFile<CR>
+
+You can place this line in your |init.vim| or |vimrc| file.
+
+Other popular options:
+
+    " Map to Ctrl+G
+    nnoremap <C-g> :GoToFile<CR>
+
+    " Map to F5
+    nnoremap <F5> :GoToFile<CR>
+
+==============================================================================
+5. Internationalization                              *go_to_file-i18n*
+
+The plugin uses Vim's gettext interface (|has-gettext|) to provide
+translated error messages. When Vim is compiled with |+gettext|, the
+plugin automatically loads message catalogs from the `lang/` directory.
+
+Currently available translations:
+
+  - English (default)
+  - Russian
+
+To add a new language:
+1. Init: msginit --input=lang/go_to_file.pot --output=lang/<code>.po --locale=<code>
+2. Translate the `msgstr` entries at lang/<code>.po
+3. Compile: `msgfmt lang/<code>.po -o lang/<code>/LC_MESSAGES/go_to_file.mo`
+
+==============================================================================
+6. License                                              *go_to_file-license*
+
+This plugin is distributed under the terms of the MIT license.
+It is provided as-is, without any warranty.
+
+==============================================================================
+ vim:tw=78:ts=8:noet:ft=help:norl:

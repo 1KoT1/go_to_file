@@ -1,0 +1,17 @@
+# This file is distributed under the same license as the https://github.com/1KoT1/go_to_file package.
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-30 14:11+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: https://github.com/1KoT1/go_to_file\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: autoload/go_to_file.vim:14
+msgid "File \"%s\" not found in predefined directories"
+msgstr ""
